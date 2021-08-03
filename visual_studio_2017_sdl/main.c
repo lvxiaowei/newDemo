@@ -57,8 +57,8 @@ int main(int argc, char** argv)
      * item.
      */
     //lv_demo_widgets();
-    lv_demo_music();
-    //lv_demo_electric_control();
+    //lv_demo_music();
+    lv_demo_electric_control();
     //lv_demo_benchmark();
     //lv_demo_keypad_encoder();
     //lv_demo_printer();
@@ -89,6 +89,7 @@ int main(int argc, char** argv)
     //lv_ex_gauge_1();
     //lv_ex_img_1();
     //lv_ex_tileview_1();
+    //lv_ex_checkbox_1();
 
     while (1) {
         /* Periodically call the lv_task handler.

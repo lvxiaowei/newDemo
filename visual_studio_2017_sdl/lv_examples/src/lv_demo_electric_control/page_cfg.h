@@ -1,10 +1,12 @@
 /**
- * @file lv_demo_electric_control.h
+ * @file page_cfg.h
  *
  */
 
-#ifndef LV_DEMO_ELECTRIC_CONTROL_H
-#define LV_DEMO_ELECTRIC_CONTROL_H
+#ifndef PAGE_CFG_H
+#define PAGE_CFG_H
+
+#pragma execution_character_set("utf-8")
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,7 +15,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "global_prototype.h"
+
 /*********************
  *      DEFINES
  *********************/
@@ -31,8 +33,9 @@ extern "C" {
  *      MACROS
  **********************/
 
+#endif /*PAGE_CFG*/
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /*LV_DEMO_ELECTRIC_CONTROL_H*/

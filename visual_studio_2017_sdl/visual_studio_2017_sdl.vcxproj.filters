@@ -804,6 +804,33 @@
     <ClCompile Include="lvgl\src\lv_font\myFont.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lv_examples\src\lv_demo_electric_control\page_run.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lv_examples\src\lv_demo_electric_control\page_cfg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lv_examples\src\lv_demo_electric_control\page_set.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lv_examples\src\lv_demo_electric_control\theme.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\src\lv_font\myFont_12.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\src\lv_font\myFont_14.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\src\lv_font\myFont_16.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\src\lv_font\myFont_18.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\src\lv_font\myFont_20.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lvgl/lvgl.h">
@@ -1203,6 +1230,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\lv_demo_electric_control.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\page_run.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\page_cfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\page_set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\theme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\global_prototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

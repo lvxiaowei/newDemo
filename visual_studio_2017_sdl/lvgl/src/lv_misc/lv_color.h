@@ -53,6 +53,7 @@ extern "C" {
 #define LV_COLOR_PURPLE  LV_COLOR_MAKE(0x80, 0x00, 0x80)
 #define LV_COLOR_ORANGE  LV_COLOR_MAKE(0xFF, 0xA5, 0x00)
 
+#define CUSTOM_COLOR_1 LV_COLOR_MAKE(0xAA, 0xFF, 0xFF)
 /**
  * Opacity percentages.
  */

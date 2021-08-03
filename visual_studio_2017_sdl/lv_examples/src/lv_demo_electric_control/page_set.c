@@ -1,19 +1,14 @@
 /**
- * @file lv_demo_electric_control.h
+ * @file page_set.c
  *
  */
-
-#ifndef LV_DEMO_ELECTRIC_CONTROL_H
-#define LV_DEMO_ELECTRIC_CONTROL_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /*********************
  *      INCLUDES
  *********************/
-#include "global_prototype.h"
+#include "page_set.h"
+
+
 /*********************
  *      DEFINES
  *********************/
@@ -23,7 +18,12 @@ extern "C" {
  **********************/
 
 /**********************
- * GLOBAL PROTOTYPES
+ *  STATIC PROTOTYPES
+ **********************/
+
+
+/**********************
+ *  STATIC VARIABLES
  **********************/
 
 
@@ -31,8 +31,12 @@ extern "C" {
  *      MACROS
  **********************/
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
+/**********************
+ *   GLOBAL FUNCTIONS
+ **********************/
 
-#endif /*LV_DEMO_ELECTRIC_CONTROL_H*/
+
+
+/**********************
+ *   STATIC FUNCTIONS
+ **********************/
