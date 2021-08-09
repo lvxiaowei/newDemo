@@ -45,7 +45,7 @@ static lv_obj_t* lable_speed;   /*×ªËÙ*/
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t* _running_page_create(lv_obj_t* parent)
+lv_obj_t* _running_page_open(lv_obj_t* parent)
 {
 
 	main_cont = lv_obj_create(parent, NULL);

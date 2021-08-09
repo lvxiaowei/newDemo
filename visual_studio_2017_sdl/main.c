@@ -61,7 +61,7 @@ int main(int argc, char** argv)
     lv_demo_electric_control();
     //lv_demo_benchmark();
     //lv_demo_keypad_encoder();
-    //lv_demo_printer();
+    lv_demo_printer();
     //lv_demo_stress();
     //lv_ex_get_started_1();
     //lv_ex_get_started_2();

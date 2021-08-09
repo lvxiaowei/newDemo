@@ -15,6 +15,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+#include "global_prototype.h"
 
 /*********************
  *      DEFINES
@@ -27,7 +28,7 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-
+	lv_obj_t* _settings_page_open(lv_obj_t* parent);
 
 /**********************
  *      MACROS

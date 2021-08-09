@@ -29,7 +29,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
  /*运行界面创建*/
-lv_obj_t* _running_page_create(lv_obj_t* parent);
+lv_obj_t* _running_page_open(lv_obj_t* parent);
 
 
 /**********************
