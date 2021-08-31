@@ -95,6 +95,8 @@
       <AdditionalIncludeDirectories>$(ProjectDir)\SDL2\include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -252,7 +254,6 @@
     <ClCompile Include="lvgl/src/lv_widgets/lv_textarea.c" />
     <ClCompile Include="lvgl/src/lv_widgets/lv_tileview.c" />
     <ClCompile Include="lvgl/src/lv_widgets/lv_win.c" />
-    <ClCompile Include="lvgl\src\lv_font\myFont.c" />
     <ClCompile Include="lvgl\src\lv_font\myFont_12.c" />
     <ClCompile Include="lvgl\src\lv_font\myFont_14.c" />
     <ClCompile Include="lvgl\src\lv_font\myFont_16.c" />
@@ -408,9 +409,6 @@
     <ClCompile Include="lv_examples/src/lv_ex_widgets/lv_ex_tileview/lv_ex_tileview_1.c" />
     <ClCompile Include="lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.c" />
     <ClCompile Include="lv_examples\src\lv_demo_electric_control\lv_demo_electric_control.c" />
-    <ClCompile Include="lv_examples\src\lv_demo_electric_control\page_cfg.c" />
-    <ClCompile Include="lv_examples\src\lv_demo_electric_control\page_run.c" />
-    <ClCompile Include="lv_examples\src\lv_demo_electric_control\page_set.c" />
     <ClCompile Include="lv_examples\src\lv_demo_electric_control\theme.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
@@ -548,9 +546,6 @@
     <ClInclude Include="lv_drv_conf.h" />
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\global_prototype.h" />
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\lv_demo_electric_control.h" />
-    <ClInclude Include="lv_examples\src\lv_demo_electric_control\page_cfg.h" />
-    <ClInclude Include="lv_examples\src\lv_demo_electric_control\page_run.h" />
-    <ClInclude Include="lv_examples\src\lv_demo_electric_control\page_set.h" />
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\theme.h" />
     <ClInclude Include="lv_ex_conf.h" />
   </ItemGroup>

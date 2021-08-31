@@ -49,12 +49,12 @@ void lv_demo_electric_control(void);
 
 /*********************************************运行界面******************************************/
 /*快捷键相关的回调*/
-static void btn_event_1(lv_obj_t* obj, lv_event_t event);  /*主机点动*/
-static void btn_event_2(lv_obj_t* obj, lv_event_t event);  /*主机运转*/
-static void btn_event_3(lv_obj_t* obj, lv_event_t event);  /*压丝点动*/
-static void btn_event_4(lv_obj_t* obj, lv_event_t event);  /*压低停机*/
-static void btn_event_5(lv_obj_t* obj, lv_event_t event);  /*速度切换*/
-static void btn_event_6(lv_obj_t* obj, lv_event_t event);  /*界面切换*/
+LV_EVENT_CB_DECLARE(btn_event_1);  /*主机点动*/
+LV_EVENT_CB_DECLARE(btn_event_2);  /*主机运转*/
+LV_EVENT_CB_DECLARE(btn_event_3);  /*压丝点动*/
+LV_EVENT_CB_DECLARE(btn_event_4);  /*压低停机*/
+LV_EVENT_CB_DECLARE(btn_event_5);  /*速度切换*/
+LV_EVENT_CB_DECLARE(btn_event_6);  /*界面切换*/
 
 /**
  * 设置运行界面所有的参数的值
@@ -90,34 +90,30 @@ static void set_run_data(run_data_type state, run_data_type type, const char* va
   *   STATIC FUNCTIONS
   **********************/
 
-static void btn_event_1(lv_obj_t* obj, lv_event_t event)
+LV_EVENT_CB_DECLARE(btn_event_1)
 {
 
 }
 
-static void btn_event_2(lv_obj_t* obj, lv_event_t event)
+LV_EVENT_CB_DECLARE(btn_event_2)
 {
 
 }
-static void btn_event_3(lv_obj_t* obj, lv_event_t event)
-{
-
-}
-
-static void btn_event_4(lv_obj_t* obj, lv_event_t event)
+LV_EVENT_CB_DECLARE(btn_event_3)
 {
 
 }
 
-static void btn_event_5(lv_obj_t* obj, lv_event_t event)
+LV_EVENT_CB_DECLARE(btn_event_4)
 {
 
 }
 
-static void btn_event_6(lv_obj_t* obj, lv_event_t event)
+LV_EVENT_CB_DECLARE(btn_event_5)
 {
 
 }
+
 
 #ifdef __cplusplus
 } /* extern "C" */
