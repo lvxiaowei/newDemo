@@ -409,6 +409,7 @@
     <ClCompile Include="lv_examples/src/lv_ex_widgets/lv_ex_tileview/lv_ex_tileview_1.c" />
     <ClCompile Include="lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.c" />
     <ClCompile Include="lv_examples\src\lv_demo_electric_control\lv_demo_electric_control.c" />
+    <ClCompile Include="lv_examples\src\lv_demo_electric_control\lv_port_indev.c" />
     <ClCompile Include="lv_examples\src\lv_demo_electric_control\theme.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
@@ -546,6 +547,7 @@
     <ClInclude Include="lv_drv_conf.h" />
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\global_prototype.h" />
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\lv_demo_electric_control.h" />
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\lv_port_indev.h" />
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\theme.h" />
     <ClInclude Include="lv_ex_conf.h" />
   </ItemGroup>

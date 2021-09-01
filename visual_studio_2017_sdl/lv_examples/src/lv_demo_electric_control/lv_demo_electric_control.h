@@ -14,7 +14,8 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include "global_prototype.h"
-#include "../../lv_drivers/indev/keyboard.h"
+#include "lv_port_indev.h"
+#include "SDL_keycode.h"
 /*********************
  *      DEFINES
  *********************/
@@ -31,8 +32,15 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-
-
+	static lv_indev_t* kb_indev;
+	LV_EVENT_CB_DECLARE(btn_event);
+	/*快捷键相关的回调*/
+	LV_EVENT_CB_DECLARE(btn_event_F1);  /*主机点动*/
+	LV_EVENT_CB_DECLARE(btn_event_F2);  /*主机运转*/
+	LV_EVENT_CB_DECLARE(btn_event_F3);  /*压丝点动*/
+	LV_EVENT_CB_DECLARE(btn_event_F4);  /*压低停机*/
+	LV_EVENT_CB_DECLARE(btn_event_F5);  /*速度切换*/
+	LV_EVENT_CB_DECLARE(btn_event_F6);  /*界面切换*/
 /**********************
  *      MACROS
  **********************/

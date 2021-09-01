@@ -57,8 +57,9 @@ int main(int argc, char** argv)
      * item.
      */
     //lv_demo_widgets();
+    //lv_ex_keyboard_1();
     //lv_demo_music();
-    lv_demo_electric_control();
+    lv_demo_electric_control(kb_indev);
     //lv_demo_benchmark();
     //lv_demo_keypad_encoder();
     //lv_demo_printer();

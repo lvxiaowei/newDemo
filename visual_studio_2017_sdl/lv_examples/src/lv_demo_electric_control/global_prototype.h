@@ -45,16 +45,9 @@ typedef struct _running_data
 
 
 //界面初始化
-void lv_demo_electric_control(void);
+void lv_demo_electric_control(lv_indev_t* keyboard_indev);
 
 /*********************************************运行界面******************************************/
-/*快捷键相关的回调*/
-LV_EVENT_CB_DECLARE(btn_event_1);  /*主机点动*/
-LV_EVENT_CB_DECLARE(btn_event_2);  /*主机运转*/
-LV_EVENT_CB_DECLARE(btn_event_3);  /*压丝点动*/
-LV_EVENT_CB_DECLARE(btn_event_4);  /*压低停机*/
-LV_EVENT_CB_DECLARE(btn_event_5);  /*速度切换*/
-LV_EVENT_CB_DECLARE(btn_event_6);  /*界面切换*/
 
 /**
  * 设置运行界面所有的参数的值
@@ -89,31 +82,6 @@ static void set_run_data(run_data_type state, run_data_type type, const char* va
  /**********************
   *   STATIC FUNCTIONS
   **********************/
-
-LV_EVENT_CB_DECLARE(btn_event_1)
-{
-
-}
-
-LV_EVENT_CB_DECLARE(btn_event_2)
-{
-
-}
-LV_EVENT_CB_DECLARE(btn_event_3)
-{
-
-}
-
-LV_EVENT_CB_DECLARE(btn_event_4)
-{
-
-}
-
-LV_EVENT_CB_DECLARE(btn_event_5)
-{
-
-}
-
 
 #ifdef __cplusplus
 } /* extern "C" */

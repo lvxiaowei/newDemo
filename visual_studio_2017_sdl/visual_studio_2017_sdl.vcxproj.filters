@@ -819,6 +819,9 @@
     <ClCompile Include="lvgl\src\lv_font\myFont_20.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lv_examples\src\lv_demo_electric_control\lv_port_indev.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lvgl/lvgl.h">
@@ -1224,6 +1227,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lv_examples\src\lv_demo_electric_control\global_prototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\src\lv_demo_electric_control\lv_port_indev.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,13 +21,18 @@
 /**********************
  *      TYPEDEFS
  **********************/
-
+typedef enum
+{
+	page_run = 0,
+	page_set,
+	page_test
+};
 /**********************
  *  STATIC PROTOTYPES
  **********************/
 static void _running_page_open(uint32_t delay);
 static void _settngs_page_open(uint32_t delay);
-static void _config_page_open(uint32_t delay);
+static void _test_page_open(uint32_t delay);
 
 static lv_obj_t* _add_label(lv_obj_t* parent, const char* txt);
 static lv_obj_t* _add_btn(lv_obj_t* parent, const char* txt);
@@ -40,28 +45,30 @@ static void anim_bg_color_cb(lv_anim_t* a, lv_anim_value_t v);
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_obj_t* page_run;
+ //公共对象
+static int8_t index_cur_page;
+static lv_obj_t* bg_top;
+static lv_color_t bg_color_prev;
+static lv_color_t bg_color_act;
+
+//运行界面
 static lv_obj_t* lable_yarn_current;   /*织线圈数当前值*/
 static lv_obj_t* lable_iron_current;   /*铁丝圈数当前值*/
 static lv_obj_t* lable_space_current;  /*间隔圈数当前值*/
 static lv_obj_t* lable_count_current;  /*长度块数当前值*/
-static lv_obj_t* lable_yarn_set;    /*织线圈数设置的值*/
-static lv_obj_t* lable_iron_set;	/*铁丝圈数设置的值*/
-static lv_obj_t* lable_space_set;	/*间隔圈数设置的值*/
-static lv_obj_t* lable_count_set;   /*长度块数设置的值*/
-static lv_obj_t* lable_speed;   /*转速*/
+static lv_obj_t* lable_yarn_set;       /*织线圈数设置的值*/
+static lv_obj_t* lable_iron_set;	   /*铁丝圈数设置的值*/
+static lv_obj_t* lable_space_set;	   /*间隔圈数设置的值*/
+static lv_obj_t* lable_count_set;      /*长度块数设置的值*/
+static lv_obj_t* lable_speed;          /*转速*/
 
-
-static lv_obj_t* page_set;
-static lv_obj_t* page_cfg;
-
+//设置界面
 static lv_font_t* font_small;
 static lv_font_t* font_medium;
 static lv_font_t* font_large;
 
-static lv_obj_t* bg_top;
-static lv_color_t bg_color_prev;
-static lv_color_t bg_color_act;
+//测试界面
+
 /**********************
 *      MACROS
 **********************/
@@ -73,8 +80,18 @@ static lv_color_t bg_color_act;
 #define LV_DEMO_PRINTER_BG_NONE (LV_VER_RES)
 
 
-void lv_demo_electric_control(void)
+void lv_demo_electric_control(lv_indev_t* keyboard_indev)
 {
+	lv_port_indev_init();
+
+	kb_indev = keyboard_indev;
+
+	//键盘事件
+	lv_group_t* g = lv_group_create();
+	lv_group_add_obj(g, lv_scr_act());
+	lv_obj_set_event_cb(lv_scr_act(), btn_event);
+	lv_indev_set_group(kb_indev, g);
+
 	bg_color_prev = LV_DEMO_PRINTER_BLUE;
 	bg_color_act = LV_DEMO_PRINTER_BLUE;
 
@@ -109,14 +126,6 @@ void lv_demo_electric_control(void)
  *   STATIC FUNCTIONS
  **********************/
 
-bool keyboard_read1(lv_indev_drv_t* drv, lv_indev_data_t* data) {
-	data->key = SDLK_KP_ENTER;
-	data->state = LV_INDEV_STATE_PR;
-
-
-	return false; /*No buffering now so no more data read*/
-}
-
 static void _running_page_open(uint32_t delay)
 {
 	//头部
@@ -130,6 +139,7 @@ static void _running_page_open(uint32_t delay)
 	lv_obj_set_size(running_cont, LV_HOR_RES, 4 * (LV_VER_RES / 5));
 	lv_obj_clean_style_list(running_cont, LV_CONT_PART_MAIN);
 	lv_obj_align(running_cont, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 1 * (LV_VER_RES / 5));
+
 	/*静态的内容*/
 	lv_obj_t* content;
 	content = _add_label(running_cont, "织线圈数：");
@@ -227,32 +237,26 @@ static void _running_page_open(uint32_t delay)
 	//底部按钮
 	lv_obj_t* btn;
 	btn = _add_btn(running_cont, "主机\n点动");
-	lv_obj_set_event_cb(btn, btn_event_1);
 	lv_obj_set_pos(btn, 0 + 0 * 67, 142);
 	lv_demo_printer_anim_in(btn, 100 * 5);
 
 	btn = _add_btn(running_cont, "主机\n运转");
-	lv_obj_set_event_cb(btn, btn_event_2);
 	lv_obj_set_pos(btn, 0 + 1 * 67, 142);
 	lv_demo_printer_anim_in(btn, 100 * 5);
 
 	btn = _add_btn(running_cont, "压丝\n点动");
-	lv_obj_set_event_cb(btn, btn_event_3);
 	lv_obj_set_pos(btn, 0 + 2 * 67, 142);
 	lv_demo_printer_anim_in(btn, 100 * 5);
 
 	btn = _add_btn(running_cont, "压丝\n停机");
-	lv_obj_set_event_cb(btn, btn_event_4);
 	lv_obj_set_pos(btn, 0 + 3 * 67, 142);
 	lv_demo_printer_anim_in(btn, 100 * 5);
 
 	btn = _add_btn(running_cont, "速度\n切换");
-	lv_obj_set_event_cb(btn, btn_event_5);
 	lv_obj_set_pos(btn, 0 + 4 * 67, 142);
 	lv_demo_printer_anim_in(btn, 100 * 5);
 
 	btn = _add_btn(running_cont, "界面\n切换");
-	lv_obj_set_event_cb(btn, btn_event_6);
 	lv_obj_set_pos(btn, 0 + 5 * 67, 142);
 	lv_demo_printer_anim_in(btn, 100 * 5);
 
@@ -269,16 +273,7 @@ static void _running_page_open(uint32_t delay)
 	};
 	set_run_data_all(&data);
 
-	lv_indev_drv_t indev_drv;
-	lv_indev_drv_init(&indev_drv);      /*Basic initialization*/
-	indev_drv.type = LV_INDEV_TYPE_KEYPAD;                /*See below.*/
-	indev_drv.read_cb = keyboard_read1;              /*See below.*/
-
-	lv_group_t* g = lv_group_create();
-	lv_group_add_obj(g, btn);
-	/*Register the driver in LVGL and save the created input device object*/
-	lv_indev_t* my_indev = lv_indev_drv_register(&indev_drv);
-	lv_indev_set_group(my_indev, g);
+	index_cur_page = page_run;
 }
 
 static void _settngs_page_open(uint32_t delay)
@@ -289,6 +284,51 @@ static void _settngs_page_open(uint32_t delay)
 	lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_LEFT, LV_HOR_RES / 2 - 40, 10);
 	lv_obj_set_style_local_text_color(title, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
 	lv_label_set_text(title, "设置界面");
+
+	//运行数据
+	lv_obj_t* running_cont = lv_cont_create(lv_scr_act(), NULL);
+	lv_obj_set_size(running_cont, LV_HOR_RES, 4 * (LV_VER_RES / 5));
+	lv_obj_clean_style_list(running_cont, LV_CONT_PART_MAIN);
+	lv_obj_align(running_cont, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 1 * (LV_VER_RES / 5));
+
+	/*静态的内容*/
+	lv_obj_t* content;
+	content = _add_label(running_cont, "织线圈数：");
+	lv_obj_set_style_local_text_color(content, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+	lv_obj_align(content, NULL, LV_ALIGN_IN_TOP_LEFT, 5, 5 + 35 * 0);
+	lv_obj_set_width(content, 120);
+	lv_demo_printer_anim_in(content, 100 * 1);
+
+	content = _add_label(running_cont, "铁丝圈数：");
+	lv_obj_set_style_local_text_color(content, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+	lv_obj_align(content, NULL, LV_ALIGN_IN_TOP_LEFT, 5, 5 + 35 * 1);
+	lv_demo_printer_anim_in(content, 100 * 2);
+
+	content = _add_label(running_cont, "间隔圈数：");
+	lv_obj_set_style_local_text_color(content, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+	lv_obj_align(content, NULL, LV_ALIGN_IN_TOP_LEFT, 5, 5 + 35 * 2);
+	lv_demo_printer_anim_in(content, 100 * 3);
+
+	content = _add_label(running_cont, "长度间隔块数：");
+	lv_obj_set_style_local_text_color(content, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+	lv_obj_align(content, NULL, LV_ALIGN_IN_TOP_LEFT, 5, 5 + 35 * 3);
+	lv_demo_printer_anim_in(content, 100 * 4);
+
+	lv_obj_t* btn = _add_btn(running_cont, "界面\n切换");
+	lv_obj_set_pos(btn, 0 + 5 * 67, 142);
+	lv_demo_printer_anim_in(btn, 100 * 5);
+
+	index_cur_page = page_set;
+}
+
+static void _test_page_open(uint32_t delay)
+{
+	//头部
+	lv_obj_t* title = lv_label_create(lv_scr_act(), NULL);
+	lv_obj_set_style_local_text_font(title, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_font_title());
+	lv_obj_align(title, NULL, LV_ALIGN_IN_TOP_LEFT, LV_HOR_RES / 2 - 40, 10);
+	lv_obj_set_style_local_text_color(title, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+	lv_label_set_text(title, "测试界面");
 
 	//运行数据
 	lv_obj_t* running_cont = lv_cont_create(lv_scr_act(), NULL);
@@ -317,11 +357,12 @@ static void _settngs_page_open(uint32_t delay)
 	lv_obj_set_style_local_text_color(content, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
 	lv_obj_align(content, NULL, LV_ALIGN_IN_TOP_LEFT, 5, 5 + 35 * 3);
 	lv_demo_printer_anim_in(content, 100 * 4);
-}
 
-static void _config_page_open(uint32_t delay)
-{
+	lv_obj_t* btn = _add_btn(running_cont, "界面\n切换");
+	lv_obj_set_pos(btn, 0 + 5 * 67, 142);
+	lv_demo_printer_anim_in(btn, 100 * 5);
 
+	index_cur_page = page_test;
 }
 
 static lv_obj_t* _add_label(lv_obj_t* parent, const char* txt)
@@ -471,7 +512,7 @@ static void lv_demo_printer_anim_bg(uint32_t delay, lv_color_t color, int32_t y_
 static void lv_demo_printer_anim_out_all(lv_obj_t* obj, uint32_t delay) {
 	lv_obj_t* child = lv_obj_get_child_back(obj, NULL);
 	while (child) {
-		if (/*child != scan_img && child != bg_top && child != bg_bottom &&*/ child != lv_scr_act()) {
+		if ( child != bg_top  && child != lv_scr_act() ) {
 			lv_anim_t a;
 			lv_anim_init(&a);
 			lv_anim_set_var(&a, child);
@@ -518,14 +559,84 @@ static void anim_bg_color_cb(lv_anim_t* a, lv_anim_value_t v)
 	lv_obj_set_style_local_bg_color(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, c);
 }
 
-LV_EVENT_CB_DECLARE(btn_event_6)
+LV_EVENT_CB_DECLARE(btn_event)
 {
-	if (e == LV_EVENT_CLICKED) {
+	if (e == LV_EVENT_KEY) {
+
+		const uint32_t* key = lv_event_get_data();
+
+		switch (*key)
+		{
+		case SDLK_F1:
+			btn_event_F1(obj, e);
+			break;
+		case SDLK_F2:
+			btn_event_F2(obj, e);
+			break;
+		case SDLK_F3:
+			btn_event_F3(obj, e);
+			break;
+		case SDLK_F4:
+			btn_event_F4(obj, e);
+			break;
+		case SDLK_F5:
+			btn_event_F5(obj, e);
+			break;
+		case SDLK_F6:
+			btn_event_F6(obj, e);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+LV_EVENT_CB_DECLARE(btn_event_F1)
+{
+	printf("11");
+}
+
+LV_EVENT_CB_DECLARE(btn_event_F2)
+{
+
+}
+LV_EVENT_CB_DECLARE(btn_event_F3)
+{
+
+}
+
+LV_EVENT_CB_DECLARE(btn_event_F4)
+{
+
+}
+
+LV_EVENT_CB_DECLARE(btn_event_F5)
+{
+
+}
+
+LV_EVENT_CB_DECLARE(btn_event_F6)
+{
+	switch (index_cur_page)
+	{
+	case page_run:
 		lv_demo_printer_anim_out_all(lv_scr_act(), 0);
-
 		lv_demo_printer_anim_bg(0, CUSTOM_COLOR_1, _BG_FULL);
-
 		_settngs_page_open(100);
+		break;
 
+	case page_set:
+		lv_demo_printer_anim_out_all(lv_scr_act(), 0);
+		lv_demo_printer_anim_bg(0, LV_COLOR_PURPLE, _BG_FULL);
+		_test_page_open(100);
+		break;
+
+	case page_test:
+		lv_demo_printer_anim_out_all(lv_scr_act(), 0);
+		lv_obj_set_style_local_bg_opa(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
+		lv_obj_set_style_local_bg_color(bg_top, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_DEMO_PRINTER_GREEN);
+		lv_obj_set_y(bg_top, _BG_NORMAL);
+		_running_page_open(100);
+		break;
 	}
 }
