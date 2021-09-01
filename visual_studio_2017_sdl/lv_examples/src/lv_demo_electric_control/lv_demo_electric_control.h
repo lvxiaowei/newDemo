@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 	static lv_indev_t* kb_indev;
-	LV_EVENT_CB_DECLARE(btn_event);
+	LV_EVENT_CB_DECLARE(keyboard_event);
 	/*快捷键相关的回调*/
 	LV_EVENT_CB_DECLARE(btn_event_F1);  /*主机点动*/
 	LV_EVENT_CB_DECLARE(btn_event_F2);  /*主机运转*/
